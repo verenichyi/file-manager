@@ -1,11 +1,12 @@
 import { getCwdMsg } from './getCwdMsg.js';
 import { executionErrorMsg } from '../constants.js';
 import { parseCommand } from './parseCommand.js';
-
+import { validateCommand } from './validateCommand.js';
 
 export const handleCommand = async (commandInput) => {
     try {
         const [command, args] = parseCommand(commandInput);
+        validateCommand(command, args);
 
         console.log(command, args)
     } catch (error) {
