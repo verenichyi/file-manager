@@ -3,7 +3,7 @@ import { executionErrorMsg } from '../constants.js';
 import { parseCommand } from './parseCommand.js';
 import { validateCommand } from './validateCommand.js';
 import { cd, up, ls } from '../category/nwd/index.js';
-import { add, cat, rn } from '../category/files/index.js';
+import { add, cat, move, rn } from '../category/files/index.js';
 
 export const handleCommand = async (commandInput) => {
     try {
@@ -33,6 +33,14 @@ export const handleCommand = async (commandInput) => {
             }
             case 'rn': {
                 await rn(...args);
+                break;
+            }
+            case 'cp': {
+                await move(...args, true);
+                break;
+            }
+            case 'mv': {
+                await move(...args);
                 break;
             }
         }
