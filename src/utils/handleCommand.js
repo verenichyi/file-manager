@@ -1,11 +1,14 @@
 import { getCwdMsg } from './getCwdMsg.js';
-import { executionErrorMsg } from '../constants.js';
+import { compressionFlags, executionErrorMsg } from '../constants.js';
 import { parseCommand } from './parseCommand.js';
 import { validateCommand } from './validateCommand.js';
 import { cd, up, ls } from '../category/nwd/index.js';
 import { add, cat, move, rm, rn } from '../category/files/index.js';
 import { handleOs } from '../category/os/index.js';
 import { calcHash } from '../category/hash/index.js';
+import { handleCompression } from '../category/compression/index.js';
+
+const { decompress } = compressionFlags;
 
 export const handleCommand = async (commandInput) => {
     try {
@@ -55,6 +58,14 @@ export const handleCommand = async (commandInput) => {
             }
             case 'hash': {
                 await calcHash(...args);
+                break;
+            }
+            case 'compress': {
+                await handleCompression(...args);
+                break;
+            }
+            case 'decompress': {
+                await handleCompression(...args, decompress);
                 break;
             }
         }
