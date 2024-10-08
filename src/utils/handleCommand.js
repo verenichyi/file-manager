@@ -2,8 +2,8 @@ import { getCwdMsg } from './getCwdMsg.js';
 import { executionErrorMsg } from '../constants.js';
 import { parseCommand } from './parseCommand.js';
 import { validateCommand } from './validateCommand.js';
-import { cd, up } from '../category/nwd/index.js';
-import { ls } from '../category/nwd/ls.js';
+import { cd, up, ls } from '../category/nwd/index.js';
+import { cat } from '../category/files/index.js';
 
 export const handleCommand = async (commandInput) => {
     try {
@@ -21,6 +21,10 @@ export const handleCommand = async (commandInput) => {
             }
             case 'ls': {
                 await ls();
+                break;
+            }
+            case 'cat': {
+                await cat(...args);
                 break;
             }
         }
