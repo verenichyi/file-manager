@@ -5,6 +5,7 @@ import { validateCommand } from './validateCommand.js';
 import { cd, up, ls } from '../category/nwd/index.js';
 import { add, cat, move, rm, rn } from '../category/files/index.js';
 import { handleOs } from '../category/os/index.js';
+import { calcHash } from '../category/hash/index.js';
 
 export const handleCommand = async (commandInput) => {
     try {
@@ -50,6 +51,10 @@ export const handleCommand = async (commandInput) => {
             }
             case 'os': {
                 await handleOs(...args);
+                break;
+            }
+            case 'hash': {
+                await calcHash(...args);
                 break;
             }
         }
