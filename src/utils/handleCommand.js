@@ -1,10 +1,13 @@
 import { getCwdMsg } from './getCwdMsg.js';
 import { executionErrorMsg } from '../constants.js';
+import { parseCommand } from './parseCommand.js';
 
 
-export const handleCommand = async (command) => {
+export const handleCommand = async (commandInput) => {
     try {
-        console.log(command)
+        const [command, args] = parseCommand(commandInput);
+
+        console.log(command, args)
     } catch (error) {
         if (error instanceof SyntaxError) {
             process.stdout.write(error.message);
