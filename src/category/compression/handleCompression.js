@@ -8,21 +8,21 @@ import { access } from 'node:fs/promises';
 const { compress, decompress } = compressionFlags;
 
 export const handleCompression = async (pathToFile, pathToDestination, flag = compress) => {
-	const [ srcFile, destFile ] = parseArgs(pathToFile, pathToDestination, flag);
-	await access(srcFile);
+    const [srcFile, destFile] = parseArgs(pathToFile, pathToDestination, flag);
+    await access(srcFile);
 
-	let brotli;
-	const rs = createReadStream(srcFile);
-	const ws = createWriteStream(destFile);
+    let brotli;
+    const rs = createReadStream(srcFile);
+    const ws = createWriteStream(destFile);
 
-	switch (flag) {
-		case compress:
-			brotli = createBrotliCompress();
-			break;
-		case decompress:
-			brotli = createBrotliDecompress();
-			break;
-	}
+    switch (flag) {
+        case compress:
+            brotli = createBrotliCompress();
+            break;
+        case decompress:
+            brotli = createBrotliDecompress();
+            break;
+    }
 
-	await pipeline(rs, brotli, ws);
+    await pipeline(rs, brotli, ws);
 };

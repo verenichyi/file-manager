@@ -13,6 +13,7 @@ const { decompress } = compressionFlags;
 export const handleCommand = async (commandInput) => {
     try {
         const [command, args] = parseCommand(commandInput);
+        console.log(command, args)
         validateCommand(command, args);
 
         switch (command) {
