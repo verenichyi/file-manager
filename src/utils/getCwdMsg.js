@@ -1,0 +1,1 @@
+export const getCwdMsg = () => `You are currently in ${process.cwd()}\n\n`;
